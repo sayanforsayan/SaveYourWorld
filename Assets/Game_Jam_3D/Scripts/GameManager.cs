@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using UnityEngine;
 using System.Linq;
 using System;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,7 +37,6 @@ public class GameManager : MonoBehaviour
             Destroy(instance);
         }
         camControl.AssignToCam(earth);
-        SoundManager.instance.PlaySfxSound(allSound[4], true);
 
         ui.highScore = PlayerPrefs.GetInt("PlayerScore", 0);
     }
@@ -54,7 +52,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        playBtn.onClick.AddListener(TapPlay); 
+        SoundManager.instance.PlaySfxSound(allSound[4], true);
+        playBtn.onClick.AddListener(TapPlay);
         playBtn.enabled = false;
         ActivePlayButton();
     }
@@ -143,11 +142,6 @@ public class GameManager : MonoBehaviour
                 int random = UnityEngine.Random.Range(0, positionAllForZombiCreate.Count);
                 Transform tempPos = positionAllForZombiCreate[random];
                 ZombieController tempZombie = Instantiate(zombie, tempPos.position, tempPos.rotation);
-
-                //Vector3 upVector = Vector3.Normalize(new Vector3(0f,0f,0f)); // Assuming the normal is already normalized
-                //Vector3 forwardVector = Vector3.Cross(Vector3.right, upVector); // Calculate forward vector
-                //Quaternion rotation = Quaternion.LookRotation(forwardVector, upVector);
-                //tempZombie.transform.rotation = rotation;
 
                 tempZombie.ScalManage(15f);
                 totalHealth++;

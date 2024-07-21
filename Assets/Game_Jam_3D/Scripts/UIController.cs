@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
@@ -98,7 +96,6 @@ public class UIController : MonoBehaviour
     float healthBarStatus;
     public void UpdateHealthBar(float barHealth)
     {
-        Debug.Log("Health : " + healthBarStatus);
         if(healthBarStatus < 50)
         {
             SoundManager.instance.StopSfx(GameManager.instance.allSound[6]);
